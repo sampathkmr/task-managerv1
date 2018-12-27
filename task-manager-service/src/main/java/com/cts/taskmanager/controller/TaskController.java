@@ -1,4 +1,8 @@
-package com.fsd.taskmanager.controller;
+package com.cts.taskmanager.controller;
+
+/**
+ * @author Admin
+ */
 
 import java.util.List;
 
@@ -11,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.fsd.taskmanager.entity.Task;
-import com.fsd.taskmanager.service.TaskService;
+
+import com.cts.taskmanager.constant.TaskManagerAppConstant;
+import com.cts.taskmanager.entity.Task;
+import com.cts.taskmanager.service.TaskService;
 
 
 
@@ -22,78 +28,66 @@ public class TaskController {
 
 	@Autowired
 	TaskService taskService;
-	/**
-	 * log
-	 */
-	Logger LOGGER = LoggerFactory.getLogger(TaskController.class);
+	
+	Logger appLogger = LoggerFactory.getLogger(TaskController.class);
 
-	/** In this method is used to add the task details.
-	 * @param task
-	 * @return
-	 */
-	@RequestMapping(value="/addTask", method = RequestMethod.POST, produces = "application/json")
+	
+	@RequestMapping(value=TaskManagerAppConstant.addTask, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public String addTask(@RequestBody Task task) {
-		LOGGER.info("Entering into addTask Method");
+	public String includeTask(@RequestBody Task task) throws Exception {
+		appLogger.info("Start --> addTask Method");
 		try {
 			taskService.includeTask(task);
 		}catch(Exception ex) {
-			LOGGER.error("Exception occured in add task detail method");
-			return "Failure";
+			appLogger.error("Exception in include task");
+			throw ex;
 		}
-		LOGGER.info("Exit into addTask Method");
+		appLogger.info("End ---> includeTask Method");
 		return "SUCCESS";
 	}
 
-	/** In this method is used to delete the task details based on task id.
-	 * @param task_id
-	 * @return
-	 */
-	@RequestMapping(value="/deleteTask/{task_id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<Task> deleteTask(@PathVariable int task_id) {
-		LOGGER.info("Entering into delete task Method");
+	
+	@RequestMapping(value=TaskManagerAppConstant.removeTask, method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Task> deleteTask(@PathVariable int task_id) throws Exception {
+		appLogger.info("Start --> removeTask Method");
 		List<Task> deleteTaskList = null;
 		try {
 			deleteTaskList = taskService.removeTaskDetail(task_id);
 		}catch(Exception ex) {
-			LOGGER.error("Exception occured in delete task detail method");
+			appLogger.error("Exception occured in delete task detail method");
+			throw ex;
 		}
-		LOGGER.info("Exit into delete Task Method");
+		appLogger.info("End --> remove Task Method");
 		return deleteTaskList;
 	}
 
-	/** In this method is used to editTask the task details.
-	 * @param task
-	 * @param task_id
-	 * @return
-	 */
-	@RequestMapping(value="/editTask/{task_id}", method = RequestMethod.POST, produces = "application/json")
+	
+	@RequestMapping(value=TaskManagerAppConstant.updateTask, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public String editTask(@RequestBody Task task, @PathVariable int task_id) {
-		LOGGER.info("Entering into editTask Method");
+	public String editTask(@RequestBody Task task, @PathVariable int task_id) throws Exception {
+		appLogger.info("Start --> editTask Method");
 		try {
 			taskService.modifyTask(task);
 		}catch(Exception ex) {
-			LOGGER.error("Exception occured in editTask detail method");
-			return "Failure";
+			appLogger.error("Exception occured in editTask detail method");
+			throw ex;
 		}
-		LOGGER.info("Exit into editTask Method");
+		appLogger.info("End--->  editTask Method");
 		return "updated";
 	}
 
-	/** In this method is used to viewTask the task details.
-	 * @return
-	 */
-	@RequestMapping(value="/viewTask", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<Task> viewtask() {
-		LOGGER.info("Entering into viewtask Method");
+	
+	@RequestMapping(value=TaskManagerAppConstant.viewTask, method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Task> viewtask() throws Exception {
+		appLogger.info("Start--->  View Task Method");
 		List<Task> viewTaskList = null;
 		try {
 			viewTaskList = taskService.getAllTaskDetail();
 		}catch(Exception ex) {
-			LOGGER.error("Exception occured in viewtask detail method");
+			appLogger.error("Exception occured in viewtask detail method");
+			throw ex;
 		}
-		LOGGER.info("Exit into viewtask Method");
+		appLogger.info("End--->  View Task Method");
 		return viewTaskList;
 	}
 

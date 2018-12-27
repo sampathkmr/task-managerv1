@@ -1,4 +1,4 @@
-package com.fsd.taskmanager.entity;
+package com.cts.taskmanager.entity;
 
 import java.sql.Date;
 

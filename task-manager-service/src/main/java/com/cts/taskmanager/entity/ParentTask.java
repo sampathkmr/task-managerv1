@@ -1,4 +1,4 @@
-package com.fsd.taskmanager.entity;
+package com.cts.taskmanager.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

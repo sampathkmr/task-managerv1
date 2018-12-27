@@ -1,10 +1,10 @@
-package com.fsd.taskmanager.service;
+package com.cts.taskmanager.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.fsd.taskmanager.entity.Task;
+import com.cts.taskmanager.entity.Task;
 @Component
 public interface TaskService {
 

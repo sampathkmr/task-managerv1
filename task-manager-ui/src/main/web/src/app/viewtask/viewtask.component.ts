@@ -14,6 +14,7 @@ export class ViewtaskComponent implements OnInit{
 
   task: Task = new Task();
   taskList: any[] = [];
+  errorMessage:boolean = false;
   constructor(private router: Router,private taskervice: TaskService, private staticTaskService: StaticTaskService) {
   }
    
@@ -24,7 +25,7 @@ export class ViewtaskComponent implements OnInit{
          this.taskList = data;
        },
        error => {
-       // alert("ERROR");
+        this.errorMessage =true;
       });
 
 

@@ -29,7 +29,10 @@
         </div>
 </div>
 </div><hr>
-<div>
+<div *ngIf="errorMessage">
+    Service internal error, Please try after some time!
+   </div>
+<div *ngIf="!errorMessage">
     <table>
         <tbody *ngFor="let task of taskList | filter : 'task' : task.task | filter : 'parentTask' : task.parentTask  
         | filter : 'priorityFrom' : task.priorityFrom | filter : 'priorityTo' : task.priorityTo

@@ -1,4 +1,4 @@
-package com.fsd.taskmanager;
+package com.cts.taskmanager;
 
 import java.sql.Date;
 
@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.fsd.taskmanager.entity.Task;
-import com.fsd.taskmanager.service.TaskServiceImpl;
+import com.cts.taskmanager.entity.Task;
+import com.cts.taskmanager.service.TaskServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TaskManagerApplicationTests {
+public class ApplicationTests {
 
 	@Autowired
 	private TaskServiceImpl svcTests;
